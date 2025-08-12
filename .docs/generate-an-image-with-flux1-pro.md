@@ -1,0 +1,280 @@
+# Generate an image with FLUX.1 [pro].
+
+> Submits an image generation task with the FLUX.1 [pro].
+
+## OpenAPI
+
+````yaml https://api.bfl.ai/openapi.json post /v1/flux-pro
+paths:
+  path: /v1/flux-pro
+  method: post
+  servers:
+    - url: https://api.bfl.ai
+      description: BFL API
+  request:
+    security:
+      - title: APIKeyHeader
+        parameters:
+          query: {}
+          header:
+            x-key:
+              type: apiKey
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              prompt:
+                allOf:
+                  - anyOf:
+                      - type: string
+                      - type: 'null'
+                    title: Prompt
+                    description: Text prompt for image generation.
+                    default: ''
+                    example: ein fantastisches bild
+              image_prompt:
+                allOf:
+                  - anyOf:
+                      - type: string
+                      - type: 'null'
+                    title: Image Prompt
+                    description: >-
+                      Optional base64 encoded image to use as a prompt for
+                      generation.
+              width:
+                allOf:
+                  - type: integer
+                    multipleOf: 32
+                    maximum: 1440
+                    minimum: 256
+                    title: Width
+                    description: >-
+                      Width of the generated image in pixels. Must be a multiple
+                      of 32.
+                    default: 1024
+              height:
+                allOf:
+                  - type: integer
+                    multipleOf: 32
+                    maximum: 1440
+                    minimum: 256
+                    title: Height
+                    description: >-
+                      Height of the generated image in pixels. Must be a
+                      multiple of 32.
+                    default: 768
+              steps:
+                allOf:
+                  - anyOf:
+                      - type: integer
+                        maximum: 50
+                        minimum: 1
+                      - type: 'null'
+                    title: Steps
+                    description: Number of steps for the image generation process.
+                    default: 40
+                    example: 40
+              prompt_upsampling:
+                allOf:
+                  - type: boolean
+                    title: Prompt Upsampling
+                    description: >-
+                      Whether to perform upsampling on the prompt. If active,
+                      automatically modifies the prompt for more creative
+                      generation.
+                    default: false
+              seed:
+                allOf:
+                  - anyOf:
+                      - type: integer
+                      - type: 'null'
+                    title: Seed
+                    description: Optional seed for reproducibility.
+                    example: 42
+              guidance:
+                allOf:
+                  - anyOf:
+                      - type: number
+                        maximum: 5
+                        minimum: 1.5
+                      - type: 'null'
+                    title: Guidance
+                    description: >-
+                      Guidance scale for image generation. High guidance scales
+                      improve prompt adherence at the cost of reduced realism.
+                    default: 2.5
+                    example: 2.5
+              safety_tolerance:
+                allOf:
+                  - type: integer
+                    maximum: 6
+                    minimum: 0
+                    title: Safety Tolerance
+                    description: >-
+                      Tolerance level for input and output moderation. Between 0
+                      and 6, 0 being most strict, 6 being least strict.
+                    default: 2
+                    example: 2
+              interval:
+                allOf:
+                  - anyOf:
+                      - type: number
+                        maximum: 4
+                        minimum: 1
+                      - type: 'null'
+                    title: Interval
+                    description: Interval parameter for guidance control.
+                    default: 2
+                    example: 2
+              output_format:
+                allOf:
+                  - anyOf:
+                      - $ref: '#/components/schemas/OutputFormat'
+                      - type: 'null'
+                    description: >-
+                      Output format for the generated image. Can be 'jpeg' or
+                      'png'.
+                    default: jpeg
+              webhook_url:
+                allOf:
+                  - anyOf:
+                      - type: string
+                        maxLength: 2083
+                        minLength: 1
+                        format: uri
+                      - type: 'null'
+                    title: Webhook Url
+                    description: URL to receive webhook notifications
+              webhook_secret:
+                allOf:
+                  - anyOf:
+                      - type: string
+                      - type: 'null'
+                    title: Webhook Secret
+                    description: Optional secret for webhook signature verification
+            required: true
+            title: FluxProInputs
+            refIdentifier: '#/components/schemas/FluxProInputs'
+        examples:
+          example:
+            value:
+              prompt: ein fantastisches bild
+              image_prompt: <string>
+              width: 1024
+              height: 768
+              steps: 40
+              prompt_upsampling: false
+              seed: 42
+              guidance: 2.5
+              safety_tolerance: 2
+              interval: 2
+              output_format: jpeg
+              webhook_url: <string>
+              webhook_secret: <string>
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              id:
+                allOf:
+                  - type: string
+                    title: Id
+              polling_url:
+                allOf:
+                  - type: string
+                    title: Polling Url
+            title: AsyncResponse
+            refIdentifier: '#/components/schemas/AsyncResponse'
+            requiredProperties:
+              - id
+              - polling_url
+          - type: object
+            properties:
+              id:
+                allOf:
+                  - type: string
+                    title: Id
+              status:
+                allOf:
+                  - type: string
+                    title: Status
+              webhook_url:
+                allOf:
+                  - type: string
+                    title: Webhook Url
+            title: AsyncWebhookResponse
+            refIdentifier: '#/components/schemas/AsyncWebhookResponse'
+            requiredProperties:
+              - id
+              - status
+              - webhook_url
+        examples:
+          example:
+            value:
+              id: <string>
+              polling_url: <string>
+        description: Successful Response
+    '422':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              detail:
+                allOf:
+                  - items:
+                      $ref: '#/components/schemas/ValidationError'
+                    type: array
+                    title: Detail
+            title: HTTPValidationError
+            refIdentifier: '#/components/schemas/HTTPValidationError'
+        examples:
+          example:
+            value:
+              detail:
+                - loc:
+                    - <string>
+                  msg: <string>
+                  type: <string>
+        description: Validation Error
+  deprecated: false
+  type: path
+components:
+  schemas:
+    OutputFormat:
+      type: string
+      enum:
+        - jpeg
+        - png
+      title: OutputFormat
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+
+````

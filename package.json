@@ -1,0 +1,103 @@
+{
+  "name": "flux-ai-mcp-server",
+  "version": "1.0.0",
+  "description": "🎨 Flux AI MCP Server - Expert Image & Logo Generation for Cursor IDE",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "test:tdd": "node --experimental-vm-modules node_modules/.bin/jest --watch --verbose",
+    "test:integration": "node --experimental-vm-modules node_modules/.bin/jest tests/integration.test.js --verbose --runInBand",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "build": "echo 'No build step needed for Node.js'",
+    "install:deps": "npm install",
+    "setup": "npm run install:deps && npm run test",
+    "clean": "rm -rf node_modules coverage .jest-cache"
+  },
+  "keywords": [
+    "mcp",
+    "flux-ai",
+    "image-generation",
+    "cursor-ide",
+    "ai",
+    "logo-design",
+    "black-forest-labs"
+  ],
+  "author": "BMad Orchestrator",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jest": "^27.6.3",
+    "@jest/globals": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "supertest": "^6.3.4",
+    "nock": "^13.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "globals": {
+      "__DEV__": true
+    },
+    "transform": {},
+    "transformIgnorePatterns": ["node_modules/(?!(nock)/)"],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js",
+      "!src/**/*.spec.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/tests/**/*.spec.js"
+    ],
+    "verbose": true,
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es2022": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:jest/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "off",
+      "indent": ["error", 2],
+      "quotes": ["error", "single"],
+      "semi": ["error", "always"]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "flux-mcp-server-js"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/flux-mcp-server-js/issues"
+  },
+  "homepage": "https://github.com/your-repo/flux-mcp-server-js#readme"
+} 

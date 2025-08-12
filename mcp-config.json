@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "flux-ai": {
+      "command": "node",
+      "args": ["/absolute/path/to/bfl-api-mcp/src/server.js"],
+      "env": {
+        "BFL_API_KEY": "your-bfl-api-key-here",
+        "FLUX_OUTPUT_DIR": "~/Downloads/flux-generated",
+        "DEBUG": "false"
+      }
+    }
+  }
+} 
