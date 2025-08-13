@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "name": "flux-ai-mcp-server",
+  "dependencies": {
+    "fs-extra": {
+      "version": "11.3.0",
+      "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.0.tgz",
+      "overridden": false
+    },
+    "node-fetch": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz",
+      "overridden": false
+    }
+  }
+}

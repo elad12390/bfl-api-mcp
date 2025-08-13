@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          output-file: 'SBOM.spdx.json'
+          format: 'spdx-json'
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            SBOM.spdx.json
+            .compliance/*
+          generate_release_notes: true
+          body: |
+            ## OSS Compliance ✅
+            
+            This release includes:
+            - 🔒 Security scans (secrets, dependencies, SAST)
+            - 📋 SBOM (Software Bill of Materials)
+            - 📜 License compliance verification
+            - 🧪 Full test suite validation

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /**
  * 🧪 TDD Tests for Flux MCP Server
  * 

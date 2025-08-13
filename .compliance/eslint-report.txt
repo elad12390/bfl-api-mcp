@@ -1,0 +1,44 @@
+npm verbose cli /home/eladbenhaim/.nvm/versions/node/v22.18.0/bin/node /home/eladbenhaim/.nvm/versions/node/v22.18.0/lib/node_modules/npm/bin/npm-cli.js
+npm info using npm@10.9.3
+npm info using node@v22.18.0
+npm verbose title npm exec eslint src/ tests/
+npm verbose argv "exec" "--" "eslint" "src/" "tests/"
+npm verbose logfile logs-max:10 dir:/home/eladbenhaim/.npm/_logs/2025-08-13T13_33_14_651Z-
+npm verbose logfile /home/eladbenhaim/.npm/_logs/2025-08-13T13_33_14_651Z-debug-0.log
+npm http fetch GET 200 https://registry.npmjs.org/eslint 940ms (cache revalidated)
+npm warn exec The following package was not found and will be installed: eslint@9.33.0
+npm http fetch GET 200 https://registry.npmjs.org/eslint 153ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/jiti 193ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@eslint%2fcore 248ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@eslint%2fjs 263ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@eslint%2fconfig-helpers 298ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@eslint%2fplugin-kit 495ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@types%2fjson-schema 550ms (cache revalidated)
+npm http cache eslint@https://registry.npmjs.org/eslint/-/eslint-9.33.0.tgz 1ms (cache hit)
+npm http cache @eslint/plugin-kit@https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.3.5.tgz 2ms (cache hit)
+npm http cache @eslint/core@https://registry.npmjs.org/@eslint/core/-/core-0.15.2.tgz 0ms (cache hit)
+npm http cache @eslint/js@https://registry.npmjs.org/@eslint/js/-/js-9.33.0.tgz 1ms (cache hit)
+npm http cache @eslint/config-helpers@https://registry.npmjs.org/@eslint/config-helpers/-/config-helpers-0.3.1.tgz 0ms (cache hit)
+npm http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 692ms
+
+Oops! Something went wrong! :(
+
+ESLint: 9.33.0
+
+ESLint couldn't find an eslint.config.(js|mjs|cjs) file.
+
+From ESLint v9.0.0, the default configuration file is now eslint.config.js.
+If you are using a .eslintrc.* file, please follow the migration guide
+to update your configuration file to the new format:
+
+https://eslint.org/docs/latest/use/configure/migration-guide
+
+If you still have problems after following the migration guide, please stop by
+https://eslint.org/chat/help to chat with the team.
+
+npm verbose cwd /home/eladbenhaim/dev/stanley-opensource/bfl-api-mcp
+npm verbose os Linux 6.12.10-76061203-generic
+npm verbose node v22.18.0
+npm verbose npm  v10.9.3
+npm verbose exit 2
+npm verbose code 2

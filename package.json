@@ -26,13 +26,16 @@
     "cursor-ide",
     "ai",
     "logo-design",
-    "black-forest-labs"
+    "black-forest-labs",
+    "developer-tools",
+    "open-source"
   ],
-  "author": "BMad Orchestrator",
+  "author": "Progressus Software Ltd.",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
+  "sideEffects": false,
   "dependencies": {
     "node-fetch": "^3.3.2",
     "fs-extra": "^11.2.0"
@@ -94,10 +97,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "flux-mcp-server-js"
+    "url": "https://github.com/stanley-marketing/bfl-api-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/your-repo/flux-mcp-server-js/issues"
+    "url": "https://github.com/stanley-marketing/bfl-api-mcp/issues"
   },
-  "homepage": "https://github.com/your-repo/flux-mcp-server-js#readme"
+  "homepage": "https://github.com/stanley-marketing/bfl-api-mcp#readme"
 } 

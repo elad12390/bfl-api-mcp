@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /**
  * 🧪 Jest Test Setup for Flux AI MCP Server
  * 

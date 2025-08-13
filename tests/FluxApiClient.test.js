@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /**
  * 🧪 TDD Tests for Flux API Client
  * 
